@@ -1,6 +1,15 @@
+import { environment } from '../environments/environment';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth'; 
+
+import { ClientService } from './services/client.service';
 
 
 
@@ -41,9 +50,12 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(environment.firebase, 'client-panel'),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
   ],
-  providers: [],
+  providers: [AngularFireDatabase, ClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
