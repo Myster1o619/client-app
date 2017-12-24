@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -57,6 +58,7 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebase, 'client-panel'),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    FlashMessagesModule
   ],
   providers: [AngularFireDatabase, ClientService],
   bootstrap: [AppComponent]

@@ -10,7 +10,7 @@
 <div class="card">
   <div class="card-header">Add Client</div>
   <div class="card-body">
-    <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f); f.reset()">
+    <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f.value, f.valid);">
       <div class="form-group">
         <label for="firstName">First Name</label>
         <input 
@@ -116,7 +116,11 @@
               </div>
             
           </div>
-          <input type="submit" value="Submit" class="btn btn-primary btn-block">
+          <input 
+          [disabled]="!(f.valid)"
+          type="submit" 
+          value="Submit" 
+          class="btn btn-primary btn-block">
     </form>
   </div>
 </div>
