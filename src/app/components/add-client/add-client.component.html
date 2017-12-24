@@ -1,3 +1,123 @@
-<p>
-  add-client works!
-</p>
+<div class="row">
+  <div class="col-md-6">
+    <a [routerLink]="['/']" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"></i> Back to Dashboard
+    </a>
+  </div>
+  <div class="col-md-6"></div>
+</div>
+
+<div class="card">
+  <div class="card-header">Add Client</div>
+  <div class="card-body">
+    <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f); f.reset()">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input 
+        required
+        minlength="2" 
+        class="form-control" 
+        type="text"
+        [ngClass]="{'is-invalid':firstName.touched && firstName.invalid}"
+        [(ngModel)]="client.firstName" 
+        name="firstName"  
+        #firstName="ngModel">
+        <div *ngIf="firstName.touched && firstName.invalid" class="invalid-feedback">
+            <div *ngIf="firstName.errors.required">First Name is a required field.</div>
+            <div *ngIf="firstName.errors.minlength">First Name must be a minimum of 2 characters.</div>
+          </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+        required
+        minlength="2" 
+        type="text" 
+        class="form-control"[ngClass]="{'is-invalid':lastName.touched && lastName.invalid}"
+        [(ngModel)]="client.lastName"
+        name="lastName"
+        #lastName="ngModel">
+        <div *ngIf="lastName.touched && lastName.invalid" class="invalid-feedback">
+          <div *ngIf="lastName.errors.required">
+            Last Name is a required field.
+          </div>
+          <div *ngIf="lastName.errors.minlength">
+            Last Name must be a minimum of 2 characters
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+        required  
+        pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+        type="text"
+        class="form-control"
+        [(ngModel)]="client.email"
+        [ngClass]="{'is-invalid':clientEmail.touched && clientEmail.invalid}"
+        name="email"
+        #clientEmail="ngModel">
+        <div *ngIf="clientEmail.touched && clientEmail.invalid" class="invalid-feedback">
+            <div *ngIf="clientEmail.errors.required">
+              Email is a required field.
+            </div>
+            <div *ngIf="clientEmail.errors.pattern">
+              Please enter a valid email address.
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="phone">Phone</label>
+          <input
+          required
+          minlength="10"
+          pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" 
+          type="text" 
+          class="form-control"
+          [ngClass]="{'is-invalid':Clientphone.touched && Clientphone.invalid}"
+          [(ngModel)]="client.phone"
+          name="phone"
+          #Clientphone="ngModel">
+          <div *ngIf="Clientphone.touched && Clientphone.invalid" class="invalid-feedback">
+            <div *ngIf="Clientphone.errors.required">
+              Phone is a required field.
+            </div>
+            <div *ngIf="Clientphone.errors.minlength">
+              Phone number must be a minimum of 10 characters.
+            </div>
+            <div *ngIf="Clientphone.errors.pattern">
+              Please enter a valid phone number.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label for="balance">Balance</label>
+            <input
+            [disabled]="disableBalanceOnAdd"
+            required
+            pattern="^(([0-9]{1}(\d+)?)(\.\d+)?)|([0]\.(\d+)?([0-9]{1})(\d+)?)$"
+            type="number" 
+            class="form-control"
+            [ngClass]="{'is-invalid':clientBalance.touched && clientBalance.invalid}"
+            [(ngModel)]="client.balance"
+            name="balance"
+            #clientBalance="ngModel">
+            <div *ngIf="clientBalance.touched && clientBalance.invalid &&clientBalance.dirty" class="invalid-feedback">
+                <div *ngIf="clientBalance.errors.required">
+                  Please enter in a valid balance amount.
+                </div>
+                <div *ngIf="clientBalance.errors.pattern">
+                  Client balance cannot be less than zero.
+                </div>
+              </div>
+            
+          </div>
+          <input type="submit" value="Submit" class="btn btn-primary btn-block">
+    </form>
+  </div>
+</div>
+

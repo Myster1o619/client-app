@@ -31,7 +31,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 const appRoutes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'add-client', component: AddClientComponent}
 ];
 
 @NgModule({

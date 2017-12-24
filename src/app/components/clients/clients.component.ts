@@ -24,7 +24,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
   */
   
   subscription: Subscription;
-  clients: any[] = [];
+  clients: any[];
   totalOwed: number = 0;
 
   constructor(private clientService: ClientService) { }
@@ -42,9 +42,8 @@ export class ClientsComponent implements OnInit, OnDestroy {
   }
 
   getTotalOwed() {
-    for(let client = 0; client < this.clients.length; client++ ) {
-      this.totalOwed = this.totalOwed + parseFloat(this.clients[client].balance);     
-    }
+    for(let client = 0; client < this.clients.length; client++) {
+      this.totalOwed = this.totalOwed + parseFloat(this.clients[client].balance);}
     return this.totalOwed;
   }
 
