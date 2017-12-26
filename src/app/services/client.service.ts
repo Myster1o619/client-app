@@ -11,7 +11,7 @@ export class ClientService {
   client: Observable<Client>;
 
   constructor(private db: AngularFireDatabase) {
-    this.clientsRef = this.db.list('clients');
+    this.clientsRef = this.db.list('/clients');
     this.clients = this.clientsRef.snapshotChanges().map(changes => {
       return changes.map(c => 
         ({ 
@@ -23,6 +23,11 @@ export class ClientService {
 
    getClients() {
      return this.clients;
+   }
+
+   getClient(id: string) {
+     this.client = this.db.object('/clients/'+id).valueChanges();
+     return this.client;
    }
 
    addClient(value: Client) {
