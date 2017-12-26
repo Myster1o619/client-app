@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { environment } from '../environments/environment';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -62,7 +63,7 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     FlashMessagesModule
   ],
-  providers: [AngularFireDatabase, ClientService],
+  providers: [AngularFireDatabase, ClientService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
