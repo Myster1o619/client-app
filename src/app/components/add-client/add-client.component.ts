@@ -20,7 +20,7 @@ export class AddClientComponent implements OnInit {
     key : ''
   }
 
-  disableBalanceOnAdd: boolean = true;
+  disableBalanceOnAdd: boolean = false;
 
   constructor(
     private clientService: ClientService,

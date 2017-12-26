@@ -34,7 +34,7 @@ export class ClientDetailsComponent implements OnInit, OnDestroy {
     });
 
     this.subscription = this.clientService.getClient(this.id).subscribe(client => {
-      if (client.balance > 0) {
+      if (client && client.balance > 0) {
         this.hasBalance = true;
       } 
       this.client = client;
@@ -48,8 +48,15 @@ export class ClientDetailsComponent implements OnInit, OnDestroy {
     this.flashMessagesService.show('Balance successfully updated.', {cssClass: 'alert-success', timeout: 4000})
   }
 
-  onDeleteClick() {
-
+  onDeleteClick(id) {
+    if (confirm('Are you sure you want to delete this client?')) {
+      this.clientService.deleteClient(id);
+    this.router.navigate(['/']);
+    this.flashMessagesService.show('Client successfully deleted.', {cssClass: 'alert-success', timeout: 4000})
+    } else {
+      return;
+    }
+    
   }
 
   ngOnDestroy() {

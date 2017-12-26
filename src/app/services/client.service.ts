@@ -38,4 +38,8 @@ export class ClientService {
      return this.clientsRef.update(id, client);
    }
 
+   deleteClient(id: string) {
+     return this.clientsRef.remove(id);
+   }
+
 }
