@@ -22,7 +22,7 @@ export class ClientDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private clientService: ClientService,
     private activatedRoute: ActivatedRoute,
-    private route: Router,
+    private router: Router,
     private flashMessagesService: FlashMessagesService,
     
     
@@ -41,8 +41,15 @@ export class ClientDetailsComponent implements OnInit, OnDestroy {
     });   
   }
 
+  updateBalance(id) {
+    this.clientService.updateClient(id, this.client);
+    // this.router.navigate(['/client/'+this.id]);
+    this.router.navigate(['/']);
+    this.flashMessagesService.show('Balance successfully updated.', {cssClass: 'alert-success', timeout: 4000})
+  }
+
   onDeleteClick() {
-    
+
   }
 
   ngOnDestroy() {

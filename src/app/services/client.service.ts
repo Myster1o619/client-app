@@ -34,4 +34,8 @@ export class ClientService {
       this.clientsRef.push(value);
    }
 
+   updateClient(id: string, client: Client) {
+     return this.clientsRef.update(id, client);
+   }
+
 }
