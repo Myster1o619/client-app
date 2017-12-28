@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import { environment } from '../environments/environment';
 
@@ -31,12 +32,14 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 
 // Create Routes
 const appRoutes: Routes = [
-  {path: '', component: DashboardComponent},
+  
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'add-client', component: AddClientComponent},
-  {path: 'client/:id', component: ClientDetailsComponent},
-  {path: 'edit-client/:id', component: EditClientComponent}
+
+  {path: '', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'add-client', component: AddClientComponent, canActivate: [AuthGuard]},
+  {path: 'client/:id', component: ClientDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'edit-client/:id', component: EditClientComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -63,7 +66,10 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     FlashMessagesModule
   ],
-  providers: [AngularFireDatabase, ClientService, AuthService],
+  providers: [AngularFireDatabase, 
+  ClientService, 
+  AuthService,
+  AuthGuard,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
